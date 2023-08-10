@@ -27,10 +27,13 @@ CREATE TABLE IF NOT EXISTS `notes` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin2 COLLATE=latin2_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin2 COLLATE=latin2_general_ci;
 
--- Dumping data for table myapp.notes: ~0 rows (approximately)
+-- Dumping data for table myapp.notes: ~4 rows (approximately)
 DELETE FROM `notes`;
+INSERT INTO `notes` (`id`, `body`, `user_id`) VALUES
+	(40, 'User note test 1', 1),
+	(41, 'User note test 2', 1);
 
 -- Dumping structure for table myapp.users
 CREATE TABLE IF NOT EXISTS `users` (
@@ -40,10 +43,12 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `Index 2` (`email`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin2 COLLATE=latin2_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin2 COLLATE=latin2_general_ci;
 
--- Dumping data for table myapp.users: ~1 rows (approximately)
+-- Dumping data for table myapp.users: ~3 rows (approximately)
 DELETE FROM `users`;
+INSERT INTO `users` (`id`, `username`, `password`, `email`) VALUES
+	(1, 'user', 'd9e6762dd1c8eaf6d61b3c6192fc408d4d6d5f1176d0c29169bc24e71c3f274ad27fcd5811b313d681f7e55ec02d73d499c95455b6b5bb503acf574fba8ffe85', 'user@user.com'),
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
