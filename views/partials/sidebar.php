@@ -41,16 +41,17 @@
             </a>
         <?php endif ?>
         <!-- Characters -->
+        <?php if ($_SESSION['user'] ?? false): ?>
         <div class="relative">
             <a href="#" class="flex items-center py-2 text-gray-700 hover:text-slate-700 hover:bg-slate-300 rounded-lg"
-                id="chat">
+                id="characters">
                 <i class="material-icons mr-2">group</i>
                 <div class="hidden sm:block">
                     Characters
                 </div>
                 <i class="material-icons hidden sm:block md:ml-18 sm:ml-5">expand_more</i>
             </a>
-            <div class="flex border-2 border-zinc-800 rounded bg-slate-300" id="chatDropdown" style="display:none;">
+            <div class="flex border-2 border-zinc-800 rounded bg-slate-300" id="characterDropdown" style="display:none;">
                 <a href="/contact"
                     class="<?= urlIs('/contact') ?> flex items-center py-2 text-slate-700 hover:text-gray-700 bg-slate-300 hover:bg-slate-400">
                     <i class="material-icons mr-2">email</i>
@@ -67,6 +68,7 @@
                 </a>
             </div>
         </div>
+        <?php endif ?>
         <!-- Chat -->
         <div class="relative">
             <a href="#" class="flex items-center py-2 text-gray-700 hover:text-slate-700 hover:bg-slate-300 rounded-lg"
