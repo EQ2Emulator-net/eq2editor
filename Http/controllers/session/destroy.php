@@ -4,5 +4,5 @@ use Core\Authenticator;
 
 (new Authenticator)->logout();
 
-header('location: /');
+header('location: /login');
 exit();

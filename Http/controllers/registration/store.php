@@ -2,6 +2,7 @@
 use Core\App;
 use Core\Database;
 use Core\Validator;
+use Core\Authenticator;
 
 $db = App::resolve(Database::class);
 
@@ -31,7 +32,7 @@ if (! empty($errors)) {
 }
 
 // check if the account already exist
-$user = $db->query('select * from users where username = :username or email =:email', [
+$user = $db->query('select * from account where name = :username or email_address =:email', [
     'username' => $username,
     'email' => $email
 ])->find();
@@ -44,20 +45,18 @@ if ($user) {
     exit();
 } else {
     // if not , save on to the database and login and redirect.
-    $db->query('INSERT INTO users(username, password, email) VALUES(:username, :password, :email)', [
+    $db->query('INSERT INTO account(name, passwd, email_address) VALUES(:username, :password, :email)', [
         'username' => $username,
         'password' => hash('sha512', $password),
         'email' => $email
     ]);
 
-    $user = $db->query('select * from users where username = :username AND email =:email', [
+    $user = $db->query('select * from account where name = :username AND email_address =:email', [
         'username' => $username,
         'email' => $email
     ])->find();
 
-    // mark user has logged in
-    // Not working for some reason
-    //login($user);
+    (new Authenticator)->login($user);
 
     header('location: /');
     exit();
