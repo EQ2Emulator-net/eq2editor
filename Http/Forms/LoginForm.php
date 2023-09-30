@@ -8,10 +8,10 @@ class LoginForm
 {
     protected $errors = [];
 
-    public function validate($email, $password)
+    public function validate($usernameOrEmail, $password)
     {
-        if (!Validator::email($email)) {
-            $this->errors['email'] = 'Please provide a valid email address.';
+        if (!Validator::usernameOrEmail($usernameOrEmail)) {
+            $this->errors['email'] = 'Please provide a valid username or email address.';
         }
 
         if (!Validator::string($password)) {

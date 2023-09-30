@@ -4,11 +4,14 @@ namespace Core;
 
 class Authenticator
 {
-    public function attempt($email, $password)
+    public function attempt($usernameOrEmail, $password)
     {
+        // Check if the input is an email or a username
+        $column = filter_var($usernameOrEmail, FILTER_VALIDATE_EMAIL) ? 'email_address' : 'name';
+
         $user = App::resolve(Database::class)
-            ->query('select * from account where email_address = :email', [
-            'email' => $email
+            ->query("select * from account where $column = :value", [
+            'value' => $usernameOrEmail
         ])->find();
 
         if ($user) {

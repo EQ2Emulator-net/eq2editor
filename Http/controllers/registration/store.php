@@ -17,8 +17,8 @@ if (!Validator::string($username)) {
     $errors['username'] = 'Please provide a username';
 }
 
-if (!Validator::email($email)) {
-    $errors['email'] = 'Please provide a valid email address';
+if (!Validator::usernameOrEmail($email)) {
+    $errors['email'] = 'Please provide a valid username or email address';
 }
 
 if (!Validator::string($password, 7, 255)) {
